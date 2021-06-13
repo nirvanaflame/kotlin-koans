@@ -1,6 +1,15 @@
-import java.util.*
 
-fun partitionTo() = TODO()
+fun <T, C : MutableCollection<T>> Collection<T>.partitionTo(first: C, second: C, predicate: (T) -> Boolean): Pair<C, C> {
+    forEach {
+        if (predicate(it)) {
+            first.add(it)
+        } else {
+            second.add(it)
+        }
+    }
+    return Pair(first, second)
+}
+
 
 fun partitionWordsAndLines() {
     val (words, lines) = listOf("a", "a b", "c", "d e")
